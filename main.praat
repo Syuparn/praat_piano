@@ -9,6 +9,7 @@ procedure main:
     # initialize viewport
     demo Erase all
     demo Select inner viewport: 0, 100, 0, 100
+    demoWindowTitle: "Praat Piano"
 
     # draw keyboard shape
     @drawKeyboard:

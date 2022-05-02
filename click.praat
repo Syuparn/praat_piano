@@ -1,6 +1,6 @@
 include util.praat
 
-procedure isClicked: .rectangle#, .x, .y
+procedure includes: .rectangle#, .x, .y
     # validation check
     assert size(.rectangle#) >= 4
 
@@ -23,9 +23,9 @@ procedure clickedRectangle: .rectangles##, .x, .y
 
     for .i to numberOfRows(.rectangles##)
         @nth: .rectangles##, .i
-        @isClicked: nth.return#, .x, .y
+        @includes: nth.return#, .x, .y
 
-        if isClicked.return
+        if includes.return
             # if a new rectangle overlays the previous one, return it instead
             .layer = .rectangles##[.i, 5]
             if .layer > .foundLayer

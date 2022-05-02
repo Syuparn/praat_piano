@@ -1,29 +1,29 @@
 include click.praat
 include util.praat
 
-procedure testIsClicked:
+procedure testIncludes:
     # rectangle is clicked
-    @isClicked: {10%, 20%, 30%, 40%, 0}, 15%, 35%
-    assert isClicked.return == true
+    @includes: {10%, 20%, 30%, 40%, 0}, 15%, 35%
+    assert includes.return == true
 
     # rectangle is not clicked (x is out of range)
-    @isClicked: {10%, 20%, 30%, 40%, 0}, 25%, 35%
-    assert isClicked.return == false
+    @includes: {10%, 20%, 30%, 40%, 0}, 25%, 35%
+    assert includes.return == false
 
     # rectangle is not clicked (y is out of range)
-    @isClicked: {10%, 20%, 30%, 40%, 0}, 15%, 45%
-    assert isClicked.return == false
+    @includes: {10%, 20%, 30%, 40%, 0}, 15%, 45%
+    assert includes.return == false
 
     # x border is excluded
-    @isClicked: {10%, 20%, 30%, 40%, 0}, 10%, 35%
-    assert isClicked.return == false
+    @includes: {10%, 20%, 30%, 40%, 0}, 10%, 35%
+    assert includes.return == false
 
     # y border is excluded
-    @isClicked: {10%, 20%, 30%, 40%, 0}, 15%, 40%
-    assert isClicked.return == false
+    @includes: {10%, 20%, 30%, 40%, 0}, 15%, 40%
+    assert includes.return == false
 endproc
 
-@testIsClicked:
+@testIncludes:
 
 procedure testClickedRectangle:
     .rectangles## = {

@@ -9,19 +9,34 @@ procedure pianoFrequencies: .size
     .return# = .frequencies#
 endproc
 
+# generate sound objects of each piano key (first one is C4)
+procedure generatePianoSounds: .size, .timeSec
+    assert .size >= 0
 
-procedure generateSound: .frequency, .time
+    @pianoFrequencies: .size
+    .frequencies# = pianoFrequencies.return#
+
+    .soundObjIDs# = zero#(.size)
+    for .i to .size
+        @generateSound: .frequencies#[.i], .timeSec
+        .soundObjIDs#[.i] = generateSound.return
+    endfor
+
+    .return# = .soundObjIDs#
+endproc
+
+procedure generateSound: .frequencyHz, .timeSec
     .name$ = "sound"
     .channels = 1 ; monoral
     .startSec = 0
-    .endSec = .time
+    .endSec = .timeSec
     .samplingRateHz = 44100
     .amplitude = 0.2
     .fadeInDurationSec = 0.01
     .fadeOutDurationSec = 0.01
 
     .id = Create Sound as pure tone: .name$, .channels, .startSec, .endSec,
-    ...                              .samplingRateHz, .frequency, .amplitude,
+    ...                              .samplingRateHz, .frequencyHz, .amplitude,
     ...                              .fadeInDurationSec, .fadeOutDurationSec
 
     .return = .id

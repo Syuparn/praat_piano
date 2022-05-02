@@ -16,11 +16,12 @@ procedure main:
 
     # prepare piano sounds
     @generatePianoSounds: 13, 1
+    .soundIDs# = generatePianoSounds.return#
 
     # wait for click and play sounds
     while demoWaitForInput()
         if demoClicked()
-            @handleClickEvent: generatePianoSounds.return#
+            @handleClickEvent: .soundIDs#
         endif
     endwhile
 endproc
